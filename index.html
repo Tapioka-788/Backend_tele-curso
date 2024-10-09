@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de API de Salários</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input, button { padding: 10px; margin-top: 10px; }
+        #response { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Teste de API de Salários</h1>
+    
+    <h2>Adicionar Salário</h2>
+    <input type="text" id="salario" placeholder="Digite o salário" />
+    <button id="addButton">Adicionar Salário</button>
+
+    <h2>Excluir Salário</h2>
+    <input type="number" id="salarioNumeroDelete" placeholder="Digite o número do salário" />
+    <button id="deleteButton">Excluir Salário</button>
+
+    <h2>Atualizar Salário</h2>
+    <input type="number" id="salarioNumeroUpdate" placeholder="Número do salário" />
+    <input type="text" id="salarioUpdate" placeholder="Novo salário" />
+    <button id="updateButton">Atualizar Salário</button>
+
+    <h2>Lista de Salários</h2>
+    <button id="getButton">Obter Salários</button>
+    
+    <div id="response"></div>
+
+    <script>
+        const apiUrl = 'http://172.17.16.59:3000/salario';
+        
+        document.getElementById('addButton').onclick = async () => {
+            const salario = document.getElementById('salario').value;
+            if (!salario) {
+                alert('Por favor, digite um salário!');
+                return;
+            }
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ salario })
+                });
+                const data = await response.json();
+                document.getElementById('response').innerText = `Salário adicionado: ${JSON.stringify(data)}`;
+                document.getElementById('salario').value = ''; // Limpa o input
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('response').innerText = 'Erro ao adicionar salário.';
+            }
+        };
+
+        document.getElementById('deleteButton').onclick = async () => {
+            const numero = document.getElementById('salarioNumeroDelete').value;
+            if (numero === '') {
+                alert('Por favor, digite um número de salário para excluir!');
+                return;
+            }
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ numero })
+                });
+                const data = await response.json();
+                document.getElementById('response').innerText = `Salário excluído: ${JSON.stringify(data)}`;
+                document.getElementById('salarioNumeroDelete').value = ''; // Limpa o input
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('response').innerText = 'Erro ao excluir salário.';
+            }
+        };
+
+        document.getElementById('updateButton').onclick = async () => {
+            const numero = document.getElementById('salarioNumeroUpdate').value;
+            const salario = document.getElementById('salarioUpdate').value;
+            if (numero === '' || salario === '') {
+                alert('Por favor, preencha ambos os campos!');
+                return;
+            }
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ numero, salario })
+                });
+                const data = await response.json();
+                document.getElementById('response').innerText = `Salário atualizado: ${JSON.stringify(data)}`;
+                document.getElementById('salarioNumeroUpdate').value = ''; // Limpa o input
+                document.getElementById('salarioUpdate').value = ''; // Limpa o input
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('response').innerText = 'Erro ao atualizar salário.';
+            }
+        };
+
+        document.getElementById('getButton').onclick = async () => {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                document.getElementById('response').innerText = `Salários: ${JSON.stringify(data)}`;
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('response').innerText = 'Erro ao obter salários.';
+            }
+        };
+    </script>
+</body>
+</html>
+
