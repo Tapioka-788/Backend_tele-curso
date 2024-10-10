@@ -14,26 +14,32 @@ app.use(express.json());
 const cartoes = [
     {
         salario: 'salario 10',
+        vaga: 'pedreiro',
         numero: '0'
     },
     {
         salario: 'salario 11',
+        vaga: 'pizzaiolo',
         numero: '1'
     },
     {
         salario: 'salario 12',
+        vaga: 'padeiro',
         numero: '2'
     },
     {
         salario: 'salario 13',
+        vaga: 'padre',
         numero: '3'
     },
     {
         salario: 'salario 14',
+        vaga: 'acogueiro',
         numero: '4'
     },
     {
         salario: 'salario 15',
+        vaga: 'dev web',
         numero: '5'
     }
 ]
@@ -41,13 +47,13 @@ const cartoes = [
 // Caminhos
 
 app.get('/salario', (req, res) => {
-    res.status(200).json(cartoes)
+    res.status(200).json({cartao :cartoes})
     console.log('oi')
 })
 
 app.post('/salario', (req, res) => {
-    const salario = req.body.salario
-    cartoes.push({salario:salario, cartoes: cartoes.length})
+    const {salario, vaga, numero} = req.body
+    cartoes.push({salario:salario, vaga:vaga})
     console.log(cartoes)
     res.status(201).json({ salario: 'Saralio novo' })
 })    
