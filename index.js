@@ -47,23 +47,25 @@ const cartoes = [
 // Caminhos
 
 app.get('/salario', (req, res) => {
-    res.status(200).json({cartao :cartoes})
+    res.status(200).json({ cartoes })
     console.log('oi')
 })
 
 app.post('/salario', (req, res) => {
-    const {salario, vaga, numero} = req.body
-    cartoes.push({salario:salario, vaga:vaga})
+    const { salario, vaga, numero } = req.body
+
+    cartoes.push({ salario: salario, vaga: vaga, descricao: descricao })
     console.log(cartoes)
-    res.status(201).json({ salario: 'Saralio novo' })
-})    
+    res.status(201).json({ mensagem: 'Saralio novo' })
+})
 
 app.delete('/salario', (req, res) => {
-    const numero = req.body.numero
-    cartoes.splice(numero, 1)
-    console.log(cartoes)
-    res.status(201).json({ salario: 'Saralio excluido' })
-})  
+    const {cartao} = req.body
+    
+    cartoes.splice(cartao, 1)
+    console.log(cartao + 'deletado')
+    res.status(201).json({ mensagem: 'Saralio excluido' + cartao })
+})
 
 app.put('/salario', (req, res) => {
     const numero = req.body.numero
@@ -71,7 +73,7 @@ app.put('/salario', (req, res) => {
     cartoes[numero].salario = salario
     console.log(cartoes)
     res.status(201).json({ salario: 'Saralio atualizado' })
-})  
+})
 
 app.listen(porta, () => {
     console.log(`Servidor rodando na porta ${porta}`);
