@@ -15,33 +15,33 @@ const cartoes = [
     {
         salario: 'salario 10',
         vaga: 'pedreiro',
-        numero: '0'
-    },
+        descricao: 'a vaga esta vaga',
+        },
     {
         salario: 'salario 11',
         vaga: 'pizzaiolo',
-        numero: '1'
-    },
+        descricao: 'a vaga esta vaga',
+        },
     {
         salario: 'salario 12',
         vaga: 'padeiro',
-        numero: '2'
-    },
+        descricao: 'a vaga esta vaga',
+        },
     {
         salario: 'salario 13',
         vaga: 'padre',
-        numero: '3'
-    },
+        descricao: 'a vaga esta vaga',
+        },
     {
         salario: 'salario 14',
         vaga: 'acogueiro',
-        numero: '4'
-    },
+        descricao: 'a vaga esta vaga',
+        },
     {
         salario: 'salario 15',
         vaga: 'dev web',
-        numero: '5'
-    }
+        descricao: 'a vaga esta vaga',
+        }
 ]
 
 // Caminhos
@@ -52,7 +52,7 @@ app.get('/salario', (req, res) => {
 })
 
 app.post('/salario', (req, res) => {
-    const { salario, vaga, numero } = req.body
+    const { salario, vaga, descricao } = req.body
 
     cartoes.push({ salario: salario, vaga: vaga, descricao: descricao })
     console.log(cartoes)
@@ -68,11 +68,12 @@ app.delete('/salario', (req, res) => {
 })
 
 app.put('/salario', (req, res) => {
-    const numero = req.body.numero
-    const salario = req.body.salario
-    cartoes[numero].salario = salario
-    console.log(cartoes)
-    res.status(201).json({ salario: 'Saralio atualizado' })
+    const { salario, vaga, descricao } = req.body
+    cartoes[i].salario = salario
+    cartoes[i].vaga = vaga
+    cartoes[i].descricao = descricao
+    console.log(cartao + 'Atulazido')
+    res.status(201).json({ mensagem: 'Cartao atualizado' })
 })
 
 app.listen(porta, () => {
