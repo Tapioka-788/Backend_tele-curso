@@ -16,32 +16,32 @@ const cartoes = [
         salario: 'salario 10',
         vaga: 'pedreiro',
         descricao: 'a vaga esta vaga',
-        },
+    },
     {
         salario: 'salario 11',
         vaga: 'pizzaiolo',
         descricao: 'a vaga esta vaga',
-        },
+    },
     {
         salario: 'salario 12',
         vaga: 'padeiro',
         descricao: 'a vaga esta vaga',
-        },
+    },
     {
         salario: 'salario 13',
         vaga: 'padre',
         descricao: 'a vaga esta vaga',
-        },
+    },
     {
         salario: 'salario 14',
         vaga: 'acogueiro',
         descricao: 'a vaga esta vaga',
-        },
+    },
     {
         salario: 'salario 15',
         vaga: 'dev web',
         descricao: 'a vaga esta vaga',
-        }
+    }
 ]
 
 // Caminhos
@@ -61,17 +61,16 @@ app.post('/salario', (req, res) => {
 
 app.delete('/salario', (req, res) => {
     const {cartao} = req.body
-    
+
     cartoes.splice(cartao, 1)
     console.log(cartao + 'deletado')
     res.status(201).json({ mensagem: 'Saralio excluido' + cartao })
 })
 
 app.put('/salario', (req, res) => {
-    const { salario, vaga, descricao } = req.body
-    cartoes[i].salario = salario
-    cartoes[i].vaga = vaga
-    cartoes[i].descricao = descricao
+    const { salario, vaga, descricao, id } = req.body;
+    cartoes[id] = { salario: salario, vaga: vaga, descricao: descricao }
+
     console.log(cartao + 'Atulazido')
     res.status(201).json({ mensagem: 'Cartao atualizado' })
 })
