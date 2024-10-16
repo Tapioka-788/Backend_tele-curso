@@ -68,10 +68,11 @@ app.delete('/salario', (req, res) => {
 })
 
 app.put('/salario', (req, res) => {
-    const { salario, vaga, descricao, id } = req.body;
+    const { salario, vaga, descricao, id, } = req.body;
     cartoes[id] = { salario: salario, vaga: vaga, descricao: descricao }
 
-    console.log(cartao + 'Atulazido')
+    console.log('Atulazido')
+    console.log(cartoes);
     res.status(201).json({ mensagem: 'Cartao atualizado' })
 })
 
