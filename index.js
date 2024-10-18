@@ -17,36 +17,42 @@ const cartoes = [
         vaga: 'pedreiro',
         descricao: 'a vaga esta vaga',
         horario: 'horas para dar',
+        nome: 'salamidas',
     },
     {
         salario: 'salario 11',
         vaga: 'pizzaiolo',
         descricao: 'a vaga esta vaga',
         horario: 'horas para dar',
+        nome: 'salamidas',
     },
     {
         salario: 'salario 12',
         vaga: 'padeiro',
         descricao: 'a vaga esta vaga',
         horario: 'horas para dar',
+        nome: 'salamidas',
     },
     {
         salario: 'salario 13',
         vaga: 'padre',
         descricao: 'a vaga esta vaga',
         horario: 'horas para dar',
+        nome: 'salamidas',
     },
     {
         salario: 'salario 14',
         vaga: 'acogueiro',
         descricao: 'a vaga esta vaga',
         horario: 'horas para dar',
+        nome: 'salamidas',
     },
     {
         salario: 'salario 15',
         vaga: 'dev web',
         descricao: 'a vaga esta vaga',
         horario: 'horas para dar',
+        nome: 'salamidas',
     }
 ]
 
@@ -58,9 +64,9 @@ app.get('/salario', (req, res) => {
 })
 
 app.post('/salario', (req, res) => {
-    const { salario, vaga, descricao, horario } = req.body
+    const { salario, vaga, descricao, horario, nome } = req.body
 
-    cartoes.push({ salario: salario, vaga: vaga, descricao: descricao, horario: horario })
+    cartoes.push({ salario: salario, vaga: vaga, descricao: descricao, horario: horario, nome: nome })
     console.log(cartoes)
     res.status(201).json({ mensagem: 'Saralio novo' })
 })
@@ -74,8 +80,8 @@ app.delete('/salario', (req, res) => {
 })
 
 app.put('/salario', (req, res) => {
-    const { salario, vaga, descricao, horario, id, } = req.body;
-    cartoes[id] = { salario: salario, vaga: vaga, descricao: descricao, horario: horario }
+    const { salario, vaga, descricao, horario, id, nome} = req.body;
+    cartoes[id] = { salario: salario, vaga: vaga, descricao: descricao, horario: horario, nome: nome,}
 
     console.log('Atulazido')
     console.log(cartoes);
