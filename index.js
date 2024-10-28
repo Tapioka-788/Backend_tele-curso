@@ -27,30 +27,30 @@ app.get('/salario', async (req, res) => {
             id: doc.id, ...doc.data(),
         }));
         res.status(200).json({ cartoes });
-    } catch {
+    } catch (e){
         console.log(e);
     }
 
     console.log('oi')
 })
 
-app.post('/salario', async (req, res) => {
-    try {
-        const { salario, vaga, descricao, horario, nome } = req.body
-        const novoDoc = await bd.collection('cartoes').add({
-            salario: salario,
-            vaga: vaga,
-            descricao: descricao,
-            horario: horario,
-            nome: nome
-        })
+// app.post('/salario', async (req, res) => {
+//     try {
+//         const { salario, vaga, descricao, horario, nome } = req.body
+//         const novoDoc = await bd.collection('cartoes').add({
+//             salario: salario,
+//             vaga: vaga,
+//             descricao: descricao,
+//             horario: horario,
+//             nome: nome
+//         })
 
-        console.log(cartoes)
-        res.status(201).json({ mensagem: 'Saralio novo' })
-    }
-    catch { }
+//         console.log(cartoes)
+//         res.status(201).json({ mensagem: 'Saralio novo' })
+//     }
+//     catch { }
 
-})
+// })
 
 
 // app.post('/salario', (req, res) => {
@@ -61,18 +61,18 @@ app.post('/salario', async (req, res) => {
 //     res.status(201).json({ mensagem: 'Saralio novo' })
 // })
 
-app.delete('/salario', async (req, res) => {
-    try {
-        const { cartao } = req.body;
-        const response = await bd.collection('cartoes').doc(id).delete(id);
-        console.log(`Cartão com ID ${id} deletado com sucesso.`);
-        res.status(200).json({ message: `Cartão com ID ${id} deletado com sucesso.` });
-    } catch (e) {
-        console.log(e);
-        res.status(500).json({ message: "Erro ao deletar o cartão." });
-    }
-    console.log('oi')
-});
+// app.delete('/salario', async (req, res) => {
+//     try {
+//         const { cartao } = req.body;
+//         const response = await bd.collection('cartoes').doc(id).delete(id);
+//         console.log(`Cartão com ID ${id} deletado com sucesso.`);
+//         res.status(200).json({ message: `Cartão com ID ${id} deletado com sucesso.` });
+//     } catch (e) {
+//         console.log(e);
+//         res.status(500).json({ message: "Erro ao deletar o cartão." });
+//     }
+//     console.log('oi')
+// });
 
 
 // app.delete('/salario', (req, res) => {
@@ -83,14 +83,14 @@ app.delete('/salario', async (req, res) => {
 //     res.status(201).json({ mensagem: 'Saralio excluido' + cartao })
 // })
 
-app.put('/salario', (req, res) => {
-    const { salario, vaga, descricao, horario, id, nome } = req.body;
-    cartoes[id] = { salario: salario, vaga: vaga, descricao: descricao, horario: horario, nome: nome, }
+// app.put('/salario', (req, res) => {
+//     const { salario, vaga, descricao, horario, id, nome } = req.body;
+//     cartoes[id] = { salario: salario, vaga: vaga, descricao: descricao, horario: horario, nome: nome, }
 
-    console.log('Atulazido')
-    console.log(cartoes);
-    res.status(201).json({ mensagem: 'Cartao atualizado' })
-})
+//     console.log('Atulazido')
+//     console.log(cartoes);
+//     res.status(201).json({ mensagem: 'Cartao atualizado' })
+// })
 
 app.listen(porta, () => {
     console.log(`Servidor rodando na porta ${porta}`);
@@ -98,4 +98,4 @@ app.listen(porta, () => {
 
 //partido novo
 
-//aaaaab
+//aaaaaa
