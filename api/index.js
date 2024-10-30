@@ -87,28 +87,54 @@ app.post('/salario', async (req, res) => {
     }
 })
 
+// app.delete('/salario', async (req, res) => {
+//     const { id } = req.body;
+//     if (!id) {
+//         res.status(400).json({ mensagem: 'Id não fornecido' })
+//         console.log('Id não fornecido')
+//     } else {
+//         try {
+//             const cartaoRef = bd.collection('cartoes').doc(id)
+//             const doc = await cartaoRef.get()
+//             if (!doc.exists) {
+//                 res.status(404).json({ mensagem: 'Cartão com Id ' + cartao + ' não encontrado' })
+//                 console.log('Cartão não encontrado')
+//             } else {
+//                 await cartaoRef.delete()
+//                 res.status(200).json({ mensagem: 'Cartão com Id ' + cartao + ' excluido' })
+//             }
+//         } catch (e) {
+//             console.error('Erro ao excluir cartão!', error)
+//             res.status(500).json({ mensagem: 'Erro ao excluir cartão' })
+//         }
+//     }
+// });
+
+
 app.delete('/salario', async (req, res) => {
     const { id } = req.body;
     if (!id) {
-        res.status(400).json({ mensagem: 'Id não fornecido' })
-        console.log('Id não fornecido')
+        res.status(400).json({ mensagem: 'Id não fornecido' });
+        console.log('Id não fornecido');
     } else {
         try {
-            const cartaoRef = bd.collection('cartoes').doc(id)
-            const doc = await cartaoRef.get()
+            const cartaoRef = bd.collection('cartoes').doc(id);
+            const doc = await cartaoRef.get();
             if (!doc.exists) {
-                res.status(404).json({ mensagem: 'Cartão com Id ' + cartao + ' não encontrado' })
-                console.log('Cartão não encontrado')
+                res.status(404).json({ mensagem: `Cartão com Id ${id} não encontrado` });
+                console.log('Cartão não encontrado');
             } else {
-                await cartaoRef.delete()
-                res.status(200).json({ mensagem: 'Cartão com Id ' + cartao + ' excluido' })
+                await cartaoRef.delete();
+                res.status(200).json({ mensagem: `Cartão com Id ${id} excluido` });
+                console.log(`Cartão com Id ${id} excluido`);
             }
-        } catch (e) {
-            console.error('Erro ao excluir cartão!', error)
-            res.status(500).json({ mensagem: 'Erro ao excluir cartão' })
+        } catch (error) {
+            console.error('Erro ao excluir cartão!', error);
+            res.status(500).json({ mensagem: 'Erro ao excluir cartão' });
         }
     }
 });
+
 
 app.put('/salario', async (req, res) => {
     const { salario, vaga, descricao, horario, nome, id } = req.body;
