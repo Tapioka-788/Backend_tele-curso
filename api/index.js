@@ -142,6 +142,6 @@ app.put('/salario', async (req, res) => {
 
 module.exports = app
 
-app.listen(3000, () => {
-    console.log(`Servidor rodando`);
-})
+// app.listen(3000, () => {
+//     console.log(`Servidor rodando`);
+// })
