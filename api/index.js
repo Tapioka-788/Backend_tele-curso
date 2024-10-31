@@ -112,7 +112,7 @@ app.post('/salario', async (req, res) => {
 
 
 app.delete('/salario', async (req, res) => {
-    const { id } = req.body.cartao;
+    const { id } = req.body;
     if (!id) {
         res.status(400).json({ mensagem: 'Id não fornecido' });
         console.log('Id não fornecido');
